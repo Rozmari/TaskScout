@@ -18,10 +18,7 @@ do
 		((i++))
 		n=${!i}
 		let "n -= 1"
-		echo "$n"$'d'
-		sed -e 2d remind_data.txt > r_buf.txt
-		cat r_buf.txt > remind_data.txt
-		rm r_buf.txt;
+		sed -i -e 2d remind_data.txt;
 	elif [ ${!i} = "-c" ];
 	then
 		cat /dev/null > remind_data.txt;
