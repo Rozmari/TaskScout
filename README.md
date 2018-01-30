@@ -1,8 +1,12 @@
-# TaskScout - Forked from Kali Nojusmint.
+# TaskScout - A Small Alternative to TaskWarrior with Auto-Reminding
 
-A small alternative to TaskWarrior with auto-reminding. 
+Forked from Kali Nojusmint.
+
 
 TODO - 
+
 [ ] - Add autoexecute w/ option in cli.
+
 [ ] - Daemon Mode
+
 [ ] - Auto-install script.
