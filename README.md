@@ -9,6 +9,6 @@
 
 [ ] - Daemon Mode.
 
-[ ] - Auto-install script for immediate creation of needed files.
+[X] - Auto-install script for immediate creation of needed files.
 
-[_] - File switching and hastebin-uploading. 
+[ ] - File switching and hastebin-uploading. 
