@@ -1,6 +1,6 @@
 # TaskScout - A Small Alternative to TaskWarrior with Auto-Reminding
 
-Forked from Kali Nojusmint.
+Forked from Nojusr.
 
 
 TODO - 
