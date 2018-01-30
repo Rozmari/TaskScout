@@ -17,8 +17,7 @@ do
 	then
 		((i++))
 		n=${!i}
-		let "n -= 1"
-		sed -i -e 2d remind_data.txt;
+		sed -i -e "$n"$'d' remind_data.txt;
 	elif [ ${!i} = "-c" ];
 	then
 		cat /dev/null > remind_data.txt;
