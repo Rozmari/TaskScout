@@ -4,6 +4,9 @@
 
 out=$'Reminders:\n'
 num=1
+file=$"/home/$USER/.config/TaskScout/remind_data.txt"
+
+echo $file;
 
 for ((i=1;i<=$#;i++));
 do
@@ -11,16 +14,16 @@ do
 	then
 		((i++))
 		rem=${!i}
-		echo "$rem" >> remind_data.txt;
+		echo "$rem" >> $file;
 	
 	elif [ ${!i} = "-r"  ];
 	then
 		((i++))
 		n=${!i}
-		sed -i -e "$n"$'d' remind_data.txt;
+		sed -i -e "$n"$'d' $file;
 	elif [ ${!i} = "-c" ];
 	then
-		cat /dev/null > remind_data.txt;
+		cat /dev/null > $file;
 	elif [ ${!i} = "-h" ];
 	then
 		echo 'remind.sh - a simple script meant for simple notification-based reminders.'
@@ -35,6 +38,6 @@ done;
 while IFS='' read -r line || [[ -n "$line" ]]; do
 	out="$out"$'\n'$"$num. $line "
 	let "num += 1"
-done < "remind_data.txt"
+done < $file
 
 notify-send "$out"
