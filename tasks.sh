@@ -2,6 +2,7 @@
 # out is just a variable that is printed into the notification upon script startup
 # you can change it to your own liking.
 
+
 out=$'Reminders:\n'
 num=1
 file=$"/home/$USER/.config/TaskScout/remind_data.txt"
@@ -13,7 +14,9 @@ do
 	if [ ${!i} = "-a" ]
 	then
 		((i++))
-		rem=${!i}
+                date=$(date +%m-%d)
+                echo $date
+                rem="$date ${!i}"
 		echo "$rem" >> $file;
 	
 	elif [ ${!i} = "-r"  ];
