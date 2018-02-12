@@ -63,7 +63,8 @@ Earth=$"/home/$USER/.config/TaskScout/Sol/Earth"
                  echo '  -r [number]             removes reminder by number'
                  echo '  -c                      clears all reminderecho '
 		 echo '  -l			 Lists all reminders. Loudly.'
-                 echo '';
+		 echo '  -m			 Minimalist listing of tasks.'
+		 echo '';
          fi
  done;
 
