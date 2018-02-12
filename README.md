@@ -14,7 +14,7 @@ Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy).
 - Notify-send/notificationdaemon support.
 - Package-like installation w/ auto-alias creation in .zshrc and .bashrc
 - Modular design for easy user-extension.
-- 
+
 
 ## TODO - 
 [ ] - Add autoexecute w/ option for deciding time in cli.
