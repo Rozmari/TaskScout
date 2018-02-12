@@ -1,0 +1,69 @@
+#!/bin/bash
+# This is a radical new departure from the original TaskScout's script; it utilizes the splitting of different
+# functions of the TaskScout featureset into different scripts, to make programming easier, and to allow for
+# the increasing minimalization of the tool as we continue to add features, by making the program modular.
+# As such, the script can be divided into two main parts:
+#   1. The main call script, codenamed as 'Luna'.
+#   2. The main TaskScout script, codenamed as 'Earth'.
+#   3. The TaskScout Minimalist Featureset, codenamed as 'Europa'.
+#
+# The main purpose of Luna is to provide the user with the following tools:
+#   A. A central script that can call the other scripts depending on useflags.
+#   B. An avenue to begin proper reading of the documentation.
+#   C. An opportunity to add in their own TaskScout scripts without modifying previous ones in a way that might
+#       have adverse effects on the tool at large.
+
+file=$"/home/$USER/.config/TaskScout/remind_data.txt"
+Earth=$"/home/$USER/.config/TaskScout/Sol/Earth"
+
+# Add user addons in the form of the following format --
+## Title=$"/home/$USER/.config/TaskScout/Addons/Script"
+
+ 
+ for ((i=1;i<=$#;i++));
+ do
+         if [ ${!i} = "-a" ]
+         then
+             ((i++))
+             rem=${!i}
+             exec $Earth -a "$rem";
+ 
+         elif [ ${!i} = "-q"  ];
+         then
+                 ((i++))
+	         rem=${!i}
+		 exec $Earth -q "$rem";
+
+         elif [ ${!i} = "-c" ];
+         then
+                 exec "$Earth -c";
+
+       	 elif [ ${!i} = "-r" ];
+         then
+		((i++))
+                n=${!i}
+		exec $Earth -r "$n";
+
+         elif [ ${!i} = "-l" ];
+	 then
+		cat ~/.config/TaskScout/remind_data.txt | while read SPAM_OUT; do notify-send "$SPAM_OUT"; done
+		cat ~/.config/TaskScout/remind_data.txt;
+
+         elif [ ${!i} = "-m" ];
+         then
+		cat ~/.config/TaskScout/remind_data.txt | sed -e 's/^.\{11\}//' |  while read SPAM_OUT; do notify-send "$SPAM_OUT"; done		
+		cat ~/.config/TaskScout/remind_data.txt | sed -e 's/^.\{11\}//';
+
+         elif [ ${!i} = "-h" ];
+         then
+                 echo 'TaskScout - Lightweight. Simple. Damn good.'
+                 echo 'Usage:'
+                 echo '  -a "[reminder]"         adds a new reminder'
+		 echo '  -q "[reminder]"         quietly adds a new reminder'
+                 echo '  -r [number]             removes reminder by number'
+                 echo '  -c                      clears all reminderecho '
+		 echo '  -l			 Lists all reminders. Loudly.'
+                 echo '';
+         fi
+ done;
+

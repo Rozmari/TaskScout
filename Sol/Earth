@@ -1,0 +1,48 @@
+#!/bin/bash
+# out is just a variable that is printed into the notification upon 
+# you can change it to your own liking.
+
+
+out=$'Reminders:\n'
+file=$"/home/$USER/.config/TaskScout/remind_data.txt"
+num=1
+rem="$date ${!i}"
+while IFS='' read -r line || [[ -n "$line" ]]; do
+        out="$out"$'\n'$"$num. $line "
+        let "num += 1"
+done < $file
+
+
+for ((i=1;i<=$#;i++));
+do
+        if [ ${!i} = "-a" ]
+        then
+ 	     	((i++))
+		date=$(date +%m-%d-%H:%M)
+		echo $date
+                rem="$date ${!i}"
+                echo "$rem" >> $file
+                cat $file
+                notify-send "$out";
+
+        elif [ ${!i} = "-q"  ]
+        then
+                ((i++))
+                date=$(date +%m-%d-%H:%M)
+                echo $date
+		dem="$date ${!i}"
+                echo "$dem" >> $file
+                cat $file;
+
+        elif [ ${!i} = "-r"  ];
+        then
+                ((i++))
+                n=${!i}
+                sed -i -e "$n"$'d' $file
+		cat $file;
+
+        elif [ ${!i} = "-c" ];
+    then
+                cat /dev/null > $file;
+    fi
+done;
